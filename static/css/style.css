@@ -1,0 +1,743 @@
+:root {
+
+    --bg: #f6f7fb;
+
+    --panel: #ffffff;
+
+    --text: #1e2330;
+
+    --muted: #6c7280;
+
+    --primary: #5b4bdb;
+
+    --primary-dark: #4638b6;
+
+    --line: #e7e8ef;
+
+    --shadow:
+        0 10px 30px
+        rgba(31, 35, 48, .07);
+}
+
+
+* {
+
+    box-sizing: border-box;
+
+}
+
+
+body {
+
+    margin: 0;
+
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    color: var(--text);
+
+    background: var(--bg);
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.topbar {
+
+    padding:
+        42px
+        max(22px, calc((100% - 1120px) / 2));
+
+    background:
+        linear-gradient(
+            135deg,
+            #242046,
+            #5b4bdb
+        );
+
+    color: white;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    align-items: center;
+
+}
+
+
+.topbar h1 {
+
+    margin:
+        6px 0;
+
+    font-size:
+        clamp(30px, 5vw, 48px);
+
+}
+
+
+.topbar h1 span {
+
+    color: #ddd7ff;
+
+}
+
+
+.topbar p {
+
+    margin:
+        4px 0;
+
+    color: #e9e7ff;
+
+}
+
+
+.eyebrow {
+
+    font-size: 12px;
+
+    letter-spacing: 1.5px;
+
+    font-weight: 700;
+
+}
+
+
+.badge {
+
+    padding:
+        8px 12px;
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(255, 255, 255, .15);
+
+    white-space:
+        nowrap;
+
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container {
+
+    width:
+        min(
+            1120px,
+            calc(100% - 32px)
+        );
+
+    margin:
+        28px auto;
+
+}
+
+
+/* =====================================================
+   DASHBOARD CARDS
+===================================================== */
+
+.cards {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 16px;
+
+    margin-bottom:
+        16px;
+
+}
+
+
+.card,
+.panel {
+
+    background:
+        var(--panel);
+
+    border:
+        1px solid var(--line);
+
+    border-radius:
+        18px;
+
+    box-shadow:
+        var(--shadow);
+
+}
+
+
+.stat {
+
+    padding:
+        20px;
+
+}
+
+
+.stat span {
+
+    color:
+        var(--muted);
+
+    font-size:
+        14px;
+
+}
+
+
+.stat strong {
+
+    display:
+        block;
+
+    margin-top:
+        7px;
+
+    font-size:
+        28px;
+
+}
+
+
+/* =====================================================
+   GRID
+===================================================== */
+
+.grid {
+
+    display:
+        grid;
+
+    gap:
+        16px;
+
+    margin-bottom:
+        16px;
+
+}
+
+
+.grid.two {
+
+    grid-template-columns:
+        1fr 1fr;
+
+}
+
+
+/* =====================================================
+   PANELS
+===================================================== */
+
+.panel {
+
+    padding:
+        22px;
+
+    margin-bottom:
+        16px;
+
+}
+
+
+.panel-head {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        flex-start;
+
+    gap:
+        15px;
+
+    margin-bottom:
+        16px;
+
+}
+
+
+.panel h2 {
+
+    margin:
+        0 0 5px;
+
+    font-size:
+        20px;
+
+}
+
+
+.panel p {
+
+    margin:
+        0;
+
+    color:
+        var(--muted);
+
+    font-size:
+        14px;
+
+}
+
+
+/* =====================================================
+   FORM ELEMENTS
+===================================================== */
+
+input,
+select,
+button {
+
+    font:
+        inherit;
+
+    border-radius:
+        11px;
+
+    border:
+        1px solid var(--line);
+
+    padding:
+        11px 13px;
+
+}
+
+
+input,
+select {
+
+    width:
+        100%;
+
+    background:
+        white;
+
+    color:
+        var(--text);
+
+}
+
+
+button {
+
+    background:
+        var(--primary);
+
+    color:
+        white;
+
+    border:
+        0;
+
+    cursor:
+        pointer;
+
+    font-weight:
+        700;
+
+}
+
+
+button:hover {
+
+    background:
+        var(--primary-dark);
+
+}
+
+
+button.secondary {
+
+    background:
+        #efedff;
+
+    color:
+        var(--primary-dark);
+
+}
+
+
+/* =====================================================
+   QUICK ENTRY
+===================================================== */
+
+.quick-row {
+
+    display:
+        flex;
+
+    gap:
+        10px;
+
+}
+
+
+.preview,
+.result {
+
+    margin-top:
+        14px;
+
+    padding:
+        14px;
+
+    border-radius:
+        12px;
+
+    background:
+        #f7f6ff;
+
+    line-height:
+        1.6;
+
+}
+
+
+.hidden {
+
+    display:
+        none;
+
+}
+
+
+.muted {
+
+    color:
+        var(--muted);
+
+}
+
+
+/* =====================================================
+   FORMS
+===================================================== */
+
+.form {
+
+    display:
+        grid;
+
+    gap:
+        10px;
+
+}
+
+
+.row {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        10px;
+
+}
+
+
+/* =====================================================
+   CATEGORIES
+===================================================== */
+
+.category-list {
+
+    display:
+        grid;
+
+    gap:
+        12px;
+
+}
+
+
+.category-item {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        120px 1fr 90px;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+}
+
+
+.bar {
+
+    height:
+        9px;
+
+    background:
+        #ececf3;
+
+    border-radius:
+        99px;
+
+    overflow:
+        hidden;
+
+}
+
+
+.bar > span {
+
+    display:
+        block;
+
+    height:
+        100%;
+
+    background:
+        var(--primary);
+
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-wrap {
+
+    overflow-x:
+        auto;
+
+}
+
+
+table {
+
+    width:
+        100%;
+
+    border-collapse:
+        collapse;
+
+}
+
+
+th,
+td {
+
+    text-align:
+        left;
+
+    padding:
+        13px 8px;
+
+    border-bottom:
+        1px solid var(--line);
+
+}
+
+
+th {
+
+    color:
+        var(--muted);
+
+    font-size:
+        13px;
+
+}
+
+
+.action {
+
+    padding:
+        7px 9px;
+
+    margin-right:
+        5px;
+
+    font-size:
+        12px;
+
+}
+
+
+.delete {
+
+    background:
+        #fff0f0;
+
+    color:
+        #b42318;
+
+}
+
+
+/* =====================================================
+   HISTORY
+===================================================== */
+
+.history {
+
+    display:
+        grid;
+
+    gap:
+        12px;
+
+}
+
+
+.history-item {
+
+    border:
+        1px solid var(--line);
+
+    border-radius:
+        12px;
+
+    padding:
+        14px;
+
+}
+
+
+.history-item small {
+
+    display:
+        block;
+
+    color:
+        var(--muted);
+
+    margin:
+        5px 0;
+
+}
+
+
+.history-item pre {
+
+    white-space:
+        pre-wrap;
+
+    margin:
+        8px 0 0;
+
+    font-family:
+        inherit;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    text-align:
+        center;
+
+    padding:
+        25px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        13px;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 760px) {
+
+    .topbar {
+
+        display:
+            block;
+
+    }
+
+
+    .badge {
+
+        display:
+            inline-block;
+
+        margin-top:
+            15px;
+
+    }
+
+
+    .cards,
+    .grid.two {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .quick-row {
+
+        display:
+            grid;
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .row {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .category-item {
+
+        grid-template-columns:
+            90px 1fr 75px;
+
+    }
+
+}
