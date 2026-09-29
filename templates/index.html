@@ -1,0 +1,560 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>
+        PocketSmart AI
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<header class="topbar">
+
+    <div>
+
+        <p class="eyebrow">
+            GENERATIVE AI • GOOGLE GEMINI
+        </p>
+
+        <h1>
+            PocketSmart
+            <span>AI</span>
+        </h1>
+
+        <p>
+            Your smart budget &
+            recommendation assistant.
+        </p>
+
+    </div>
+
+
+    <div
+        id="healthBadge"
+        class="badge"
+    >
+        Checking API...
+    </div>
+
+</header>
+
+
+
+<main class="container">
+
+
+    <!-- DASHBOARD CARDS -->
+
+    <section class="cards">
+
+        <article class="card stat">
+
+            <span>
+                Total spending
+            </span>
+
+            <strong id="total">
+                ₹0.00
+            </strong>
+
+        </article>
+
+
+        <article class="card stat">
+
+            <span>
+                Transactions
+            </span>
+
+            <strong id="count">
+                0
+            </strong>
+
+        </article>
+
+
+        <article class="card stat">
+
+            <span>
+                Top category
+            </span>
+
+            <strong id="topCategory">
+                —
+            </strong>
+
+        </article>
+
+    </section>
+
+
+
+    <!-- QUICK ENTRY + ADD EXPENSE -->
+
+    <section class="grid two">
+
+
+        <article class="panel">
+
+            <div class="panel-head">
+
+                <div>
+
+                    <h2>
+                        Quick entry
+                    </h2>
+
+                    <p>
+                        Try:
+                        <b>coffee 120</b>
+                        or
+                        <b>bus 40</b>.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="quick-row">
+
+                <input
+                    id="quickText"
+                    placeholder="What did you spend?"
+                >
+
+                <button id="parseBtn">
+
+                    ✨ Parse with AI
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="parsePreview"
+                class="preview hidden"
+            ></div>
+
+        </article>
+
+
+
+        <article class="panel">
+
+            <div class="panel-head">
+
+                <div>
+
+                    <h2>
+                        Add expense
+                    </h2>
+
+                    <p>
+                        Save a transaction
+                        to your local SQLite database.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form
+                id="expenseForm"
+                class="form"
+            >
+
+                <input
+                    id="title"
+                    placeholder="Title"
+                    required
+                >
+
+
+                <div class="row">
+
+                    <input
+                        id="amount"
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        placeholder="Amount ₹"
+                        required
+                    >
+
+
+                    <select id="category">
+
+                        <option>
+                            Food
+                        </option>
+
+                        <option>
+                            Transport
+                        </option>
+
+                        <option>
+                            Shopping
+                        </option>
+
+                        <option>
+                            Education
+                        </option>
+
+                        <option>
+                            Bills
+                        </option>
+
+                        <option>
+                            Entertainment
+                        </option>
+
+                        <option>
+                            Health
+                        </option>
+
+                        <option>
+                            Travel
+                        </option>
+
+                        <option>
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <input
+                    id="spentAt"
+                    type="datetime-local"
+                >
+
+
+                <input
+                    id="note"
+                    placeholder="Note (optional)"
+                >
+
+
+                <button
+                    type="submit"
+                >
+                    Save expense
+                </button>
+
+            </form>
+
+        </article>
+
+
+    </section>
+
+
+
+    <!-- AI SECTION -->
+
+    <section class="grid two">
+
+
+        <!-- INSIGHTS -->
+
+        <article class="panel">
+
+            <div class="panel-head">
+
+                <div>
+
+                    <h2>
+                        AI insights
+                    </h2>
+
+                    <p>
+                        Understand your
+                        recorded spending.
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="insightsBtn"
+                    class="secondary"
+                >
+                    Generate
+                </button>
+
+            </div>
+
+
+            <div
+                id="insights"
+                class="result muted"
+            >
+                No insight generated yet.
+            </div>
+
+        </article>
+
+
+
+        <!-- RECOMMENDATION -->
+
+        <article class="panel">
+
+            <div class="panel-head">
+
+                <div>
+
+                    <h2>
+                        Recommendation assistant
+                    </h2>
+
+                    <p>
+                        Give Gemini a budget
+                        and a goal.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form
+                id="recommendForm"
+                class="form"
+            >
+
+                <input
+                    id="budget"
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    placeholder="Budget ₹"
+                    required
+                >
+
+
+                <input
+                    id="goal"
+                    placeholder="Goal, e.g. birthday gift"
+                    required
+                >
+
+
+                <input
+                    id="preferences"
+                    placeholder="Preferences (optional)"
+                >
+
+
+                <button
+                    type="submit"
+                >
+                    ✨ Recommend
+                </button>
+
+            </form>
+
+
+            <div
+                id="recommendation"
+                class="result muted"
+            >
+                Your recommendation
+                will appear here.
+            </div>
+
+        </article>
+
+
+    </section>
+
+
+
+    <!-- CATEGORY SECTION -->
+
+    <section class="panel">
+
+        <div class="panel-head">
+
+            <div>
+
+                <h2>
+                    Spending by category
+                </h2>
+
+                <p>
+                    Simple local summary.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="categories"
+            class="category-list"
+        ></div>
+
+    </section>
+
+
+
+    <!-- EXPENSE TABLE -->
+
+    <section class="panel">
+
+        <div class="panel-head">
+
+            <div>
+
+                <h2>
+                    Recent expenses
+                </h2>
+
+                <p>
+                    Delete transactions.
+                </p>
+
+            </div>
+
+
+            <button
+                id="refreshBtn"
+                class="secondary"
+            >
+                Refresh
+            </button>
+
+        </div>
+
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Title
+                        </th>
+
+                        <th>
+                            Category
+                        </th>
+
+                        <th>
+                            Amount
+                        </th>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="expenseRows"
+                ></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- HISTORY -->
+
+    <section class="panel">
+
+        <div class="panel-head">
+
+            <div>
+
+                <h2>
+                    AI history
+                </h2>
+
+                <p>
+                    Previous parsing,
+                    insights and recommendations.
+                </p>
+
+            </div>
+
+
+            <button
+                id="historyBtn"
+                class="secondary"
+            >
+                Load history
+            </button>
+
+        </div>
+
+
+        <div
+            id="history"
+            class="history"
+        ></div>
+
+    </section>
+
+
+</main>
+
+
+
+<footer>
+
+    For learning and general
+    informational use.
+
+    AI output is not financial advice.
+
+</footer>
+
+
+
+<script
+    src="{{ url_for('static', filename='js/app.js') }}"
+></script>
+
+
+</body>
+
+</html>
